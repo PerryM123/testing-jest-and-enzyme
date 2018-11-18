@@ -5,7 +5,8 @@ import * as React from 'react';
 interface IState {
   firstName: string,
   lastName: string,
-  middleName: string
+  middleName: string,
+  counter: number
 }
 
 interface IProps {
@@ -20,23 +21,36 @@ export default class App extends React.Component<IProps, IState> {
     this.state = {
       firstName: 'Whelp',
       lastName: 'delp',
-      middleName: 'hawt'
+      middleName: 'hawt',
+      counter: 0
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   handleOnClick(): void {
-    this.setState({
-      middleName: 'd00d111111'
-    });
+    if (this.state.counter === 3) {
+      this.setState({
+        counter: 0
+      });
+    } else {
+      this.setState({
+        counter: this.state.counter + 1
+      });
+    }
+  }
+
+  showSomeJSX(): JSX.Element {
+    let famWord: string[] = ["Momma", "Papa", "Controller", "Soups"];
+    return (
+      <p>Hi {famWord[this.state.counter]}!!!</p>
+    );
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={'abc'} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -49,7 +63,14 @@ export default class App extends React.Component<IProps, IState> {
             Learn React
           </a>
           <h1>{this.state.middleName}</h1>
-          <button onClick={this.handleOnClick}>Press Me</button>
+          <button onClick={this.handleOnClick}>Counter</button>
+          <p>Current: {this.state.counter}</p>
+          <p>
+          Hmmm:
+          {
+            this.showSomeJSX()
+          }
+          </p>
         </header>
       </div>
     );
