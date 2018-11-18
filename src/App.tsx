@@ -2,27 +2,33 @@ import * as React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 
+// I should put an interface for this app???
+
 interface IState {
+  userType: string,
   firstName: string,
   lastName: string,
   middleName: string,
-  counter: number
+  counter: number,
+  salary: number
 }
 
 interface IProps {
 
 }
 
-export default class App extends React.Component<IProps, IState> {
 
+export default class App extends React.Component<IProps, IState> {
 
   constructor(props: any) {
     super(props);
     this.state = {
+      userType: null,
       firstName: 'Whelp',
       lastName: 'delp',
       middleName: 'hawt',
-      counter: 0
+      counter: 0,
+      salary: null
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
@@ -47,6 +53,13 @@ export default class App extends React.Component<IProps, IState> {
     );
   }
 
+  showSomeOddJSX(): JSX.Element {
+    let famWord: string[] = ["Cool", "Alright", "GetUp", "GetDown"];
+    return (
+      <p>Hi {famWord[this.state.counter]}!!!</p>
+    );
+  }
+
   render() {
     return (
       <div className="App">
@@ -63,14 +76,20 @@ export default class App extends React.Component<IProps, IState> {
             Learn React
           </a>
           <h1>{this.state.middleName}</h1>
-          <button onClick={this.handleOnClick}>Counter</button>
+          <button id="pressMeButton" onClick={this.handleOnClick}>Counter</button>
           <p>Current: {this.state.counter}</p>
-          <p>
+          <div>
           Hmmm:
           {
             this.showSomeJSX()
           }
-          </p>
+          </div>
+          <div>
+          Hmmm2:
+          {
+            this.showSomeOddJSX()
+          }
+          </div>
         </header>
       </div>
     );
