@@ -2,7 +2,35 @@ import * as React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
 
-export default class App extends React.Component {
+interface IState {
+  firstName: string,
+  lastName: string,
+  middleName: string
+}
+
+interface IProps {
+
+}
+
+export default class App extends React.Component<IProps, IState> {
+
+
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      firstName: 'Whelp',
+      lastName: 'delp',
+      middleName: 'hawt'
+    };
+
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  handleOnClick(): void {
+    this.setState({
+      middleName: 'd00d111111'
+    });
+  }
 
   render() {
     return (
@@ -20,6 +48,8 @@ export default class App extends React.Component {
           >
             Learn React
           </a>
+          <h1>{this.state.middleName}</h1>
+          <button onClick={this.handleOnClick}>Press Me</button>
         </header>
       </div>
     );
